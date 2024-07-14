@@ -1,8 +1,8 @@
-numpy==1.24.3
-pandas==2.2.2
-yfinance==0.2.40
-tensorflow==2.13.0
-keras==2.13.1
-scikit-learn==1.2.0
-streamlit==1.36.0
-streamlit-authenticator==0.3.2
+numpy
+pandas
+yfinance
+tensorflow
+keras
+scikit-learn
+streamlit
+streamlit-authenticator
