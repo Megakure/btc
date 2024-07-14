@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
 import yfinance as yf
-import tensorflow as tf
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 import streamlit as st
 import streamlit_authenticator as stauth
@@ -39,13 +38,18 @@ def load_users():
     c.execute("SELECT username, name, password FROM users")
     rows = c.fetchall()
     conn.close()
+    
+    print("Fetched rows from database:", rows)  # Debug statement
+
     for row in rows:
         credentials["usernames"][row[0]] = {"name": row[1], "password": row[2]}
+    
+    print("Updated credentials:", credentials)  # Debug statement
     return credentials
 
 credentials = load_users()
 
-print("Loaded users:", credentials)
+print("Loaded users:", credentials)  # Debug statement
 
 authenticator = stauth.Authenticate(
     credentials,
@@ -208,7 +212,7 @@ else:
                       (name, phone, username, password, coach))
             conn.commit()
             st.success("User registered successfully!")
-            load_users()
+            credentials = load_users()  # Reload users after registration
         except sqlite3.IntegrityError:
             st.error("Username already exists")
         conn.close()
