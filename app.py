@@ -30,13 +30,9 @@ def create_db():
 
 create_db()
 
-# Clear the credentials dictionary
-credentials = {
-    "usernames": {}
-}
-
 # Load users from the database
 def load_users():
+    credentials = {"usernames": {}}
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
     c.execute("SELECT username, name, password FROM users")
@@ -44,8 +40,9 @@ def load_users():
     conn.close()
     for row in rows:
         credentials["usernames"][row[0]] = {"name": row[1], "password": row[2]}
+    return credentials
 
-load_users()
+credentials = load_users()
 
 print("Loaded users:", credentials)
 
