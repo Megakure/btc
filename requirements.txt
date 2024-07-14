@@ -1,4 +1,4 @@
-numpy==1.26.0
+numpy==1.24.3
 pandas==2.2.2
 yfinance==0.2.40
 tensorflow==2.13.0
